@@ -11,27 +11,6 @@ from preprocessingandrecords import *
 from sklearn.cluster import AgglomerativeClustering
 from scipy.cluster.hierarchy import dendrogram, linkage
 
-# def plotty_aae(savename,tses, dicts, idxs):
-#     fig, axs = plt.subplots(2,figsize=(8,3))
-#     colors = ['c','m']
-#     for k in idxs.keys():
-#         g = k[0]
-#         pattern = dicts[g][0]
-#         j = idxs[k][0]
-#         x = np.arange(j[0],j[1])
-#         y = np.asarray(pattern)
-#         print(x,y)
-#         axs[g].plot(np.arange(len(tses[g])),tses[g], label=k[1]+" TS", c='k')
-#         axs[g].plot(x, y, label=k[1]+" Pattern", c=colors[g])
-        
-#     for g in range(2):
-#         axs[g].grid()
-#         handles, labels = axs[g].get_legend_handles_labels() # https://stackoverflow.com/questions/13588920/stop-matplotlib-repeating-labels-in-legend
-#         by_label = dict(zip(labels, handles))
-#         axs[g].legend(by_label.values(), by_label.keys())
-#     plt.savefig('/home/ader003/tsdict/paperfigs/pngs/'+savename+'.png', fmt='png')
-#     plt.savefig('/home/ader003/tsdict/paperfigs/svgs/'+savename+'.svg', fmt='svg')
-
 
 def plot_ac_subroutine(model, fref, label_colors, affinity, linkagetype, methodname, **kwargs):
     # Create linkage matrix and then plot the dendrogram
@@ -71,72 +50,6 @@ def plotty_ac(savename, methodname, affinity, linkagetype, X, fref, label_colors
     if savename != None:
         plt.savefig(savename, format="svg")
     plt.show()
-
-
-# def plot_scattercomp(savename, distmats, colorize): # last parameter is colors if you're using weallwalk
-#     i = 0
-#     fig, ax = plt.subplots(2,len(distmats), figsize=(62,20))
-#     for k in distmats.keys():
-#         # ic(k)
-#         j = 0
-#         distmat = distmats[k]
-
-#         # MSD
-#         mds = MDS(2, dissimilarity='precomputed')
-#         mds.fit(distmat)
-#         Y = mds.fit_transform(distmat)
-#         x = Y[:,0]
-#         y = Y[:,1]
-#         ax[j,i].scatter(x,y, c=colorize)
-#         ax[j,i].set_title(k+' MDS')
-#         ax[j,i].grid()
-
-#         j += 1
-#         # TSNE
-#         tsne = TSNE(n_components=2, metric='precomputed')
-#         tsne.fit(distmat)
-#         Y = tsne.fit_transform(distmat)
-#         x = Y[:,0]
-#         y = Y[:,1]
-#         ax[j,i].scatter(x,y, c=colorize)
-#         ax[j,i].set_title(k+' TSNE')
-#         ax[j,i].grid()
-#         i += 1
-    
-#     plt.savefig(savename + '.svg', format="svg")
-#     plt.savefig(savename + '.png', format="png")
-#     plt.close()
-
-
-# def plotty_scatter(distmat, colors):
-#     fig, ax = plt.subplots(1,2, figsize=(20,10))
-#     plt.rcParams.update({'font.size': 16})
-#     colorize = [colors[k] for k in colors.keys()]
-#     labels = [k for k in colors.keys()]
-#     # MSD
-#     mds = MDS(2, dissimilarity='precomputed')
-#     mds.fit(distmat)
-#     Y = mds.fit_transform(distmat)
-#     x = Y[:,0]
-#     y = Y[:,1]
-#     ax[0].scatter(x,y, c=colorize)
-#     ax[0].set_title('MDS')
-#     ax[0].grid()
-#     for i, txt in enumerate(labels):
-#         ax[0].annotate(txt[:-3], (x[i],y[i]))
-#     # TSNE
-#     tsne = TSNE(n_components=2, metric='precomputed')
-#     tsne.fit(distmat)
-#     Y = tsne.fit_transform(distmat)
-#     x = Y[:,0]
-#     y = Y[:,1]
-#     ax[1].scatter(x,y, c=colorize)
-#     ax[1].set_title('TSNE')
-#     ax[1].grid()
-#     for i, txt in enumerate(labels):
-#         ax[1].annotate(txt[:-3], (x[i],y[i]))
-
-#     plt.show()
 
 
 def plotty_dict(ts, d, d_idxs, spliceindices, savename):

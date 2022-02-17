@@ -28,15 +28,6 @@ def make_exemplar_subroutine(self,ts): # univariate, definitive
     return ret_dict, idxs
 
 
-# def listtodict_subroutine(self, l): # list of lists
-#     if len(l) < 1:
-#         print("listtodict fn: Dictionary has no elements.")
-#     retdict = {}
-#     for k in range(len(l)):
-#         retdict[k] = l[k]
-#     return retdict
-
-
 class Experiment:
     def __init__(self, distmet, dict_settings, algyield=True, multivariate=False, downsamplefactor=1):
         self.distmet = distmet
@@ -80,15 +71,5 @@ class Experiment:
         else:
             d, idxs = make_exemplar_subroutine(self,ts)
             return d, idxs # LIST OF NDARRAYS
-
-
-    # def listtodict(self,l): # LIST OF LIST of NDARRAYS if multivar; univar: list of NDARRAYS
-    #     if self.multivariate: # feed list of dicts whose values are lists
-    #         ret = []
-    #         for d in range(len(l)):
-    #             ret.append(listtodict_subroutine(self,l[d])) # RETURN A DICT of NDARRAYS
-    #     else: # feed list whose values are a list
-    #         ret = listtodict_subroutine(self,l)
-    #     return ret
 
 

@@ -25,32 +25,6 @@ def CLA_inference(distmat, labels, numdicts):
     accrate = acc_activity/numdicts
     return accrate, errors
 
-            
-# def padadd(arr, padto):
-#     summed = arr[0] 
-#     summed = np.pad(summed, (0,abs(padto-len(summed))), 'constant', constant_values=(0))
-#     for dp in range(1,len(arr)): # THIS IS SO DUMB OH MY GODDDD
-#         curr = arr[dp]
-#         add = np.pad(curr, (0,abs(padto-len(curr))), 'constant', constant_values=(0))
-#         summed = np.sum([summed, add], axis=0) # elementwise sum
-#     return summed
-
-# def padmult(arr,padto):
-#     mult = arr[0] 
-#     mult = np.pad(mult, (0,abs(padto-len(mult))), 'constant', constant_values=(0))
-#     for dp in range(1,len(arr)): 
-#         curr = arr[dp]
-#         m = np.pad(curr, (0,abs(padto-len(curr))), 'constant', constant_values=(0))
-#         mult = mult*m # elementwise mult
-#     return mult
-
-
-# def padmean(arr,padto):
-#     for dp in range(1,len(arr)): 
-#         curr = arr[dp]
-#         arr[dp] = np.pad(curr, (0,abs(padto-len(curr))), 'constant', constant_values=(0))
-#     return np.mean(arr, axis=0)
-
 
 def movemin(ts, stride):
     return pd.Series(ts).rolling(stride).min().dropna().tolist() # https://stackoverflow.com/questions/43288542/max-in-a-sliding-window-in-numpy-array
@@ -151,52 +125,3 @@ def tq(w1,w2):
         shorter = w1
         longer = w2
     return shorter, longer
-
-
-# def circ_distortion(d):
-#     d_new = {}
-#     for w in d.keys():
-#         word = d[w]
-#         cutoff = randrange(1,len(d[w])-1)
-#         d_new[w] = np.concatenate((word[cutoff:], word[:cutoff]), axis=None)
-#     return d_new
-
-
-# def replacewavg(ts, val):
-#     good, bad = None, None
-#     if val == "nan":
-#         bad = np.isnan(ts)
-#         good = ~np.isnan(ts)
-#     else:
-#         good = np.where(ts!=val)
-#         bad = np.where(ts==val)
-#     replval = np.mean(ts[good])
-#     ts[bad] = replval
-#     return ts
-
-
-# def load_files(train_name, test_name, shuffle=True):
-#     testset = read_csv(test_name,sep="\t",header=None)
-#     testset = np.asarray(testset)
-#     test_labels = testset[:,0]
-#     test_rowmean = np.nanmean(testset, axis=1) # axis = 1 : take mean along row
-#     test_inds = np.where(np.isnan(testset))
-#     testset[test_inds] = np.take(test_rowmean, test_inds[0])
-#     testset = scp.stats.zscore(testset[:,1:],axis=1) # ZSCORE
-
-#     # TRAIN PREPROCESSING
-#     trainset = read_csv(train_name,sep="\t",header=None)
-#     tr_len = len(trainset)
-    
-#     if shuffle == True:
-#         trainset = np.asarray(trainset.sample(tr_len))
-#     elif shuffle == False:
-#         trainset = np.asarray(trainset) # don't shuffle; labels still here
-
-#     train_labels = trainset[:,0] # all rows, first column
-#     # replace nans with row mean before znormalizing
-#     train_rowmean = np.nanmean(trainset,axis=1) # row; col = 0
-#     train_inds = np.where(np.isnan(trainset))
-#     trainset[train_inds] = np.take(train_rowmean, train_inds[0])
-#     trainset = scp.stats.zscore(trainset[:,1:],axis=1) # remove labels # ZSCORE
-#     return trainset.astype(np.double), train_labels, testset.astype(np.double), test_labels

@@ -67,3 +67,7 @@ if __name__ == "__main__":
         print("FINISHED MAKING DISTMAT: {}, {}, {}, {}".format(NUMPAT, CYCLELEN, DISTFN, DICTYPE))
         accrate, errors = CLA_inference(distmat,labels,len(use_dicts))
         print("activity classification accuracy: {}".format(accrate))
+
+        log = open("logofresults.txt", "a")
+        log.write("{}, {}, {}, {}, {}, {}, {}\n".format(datetime.now(),DICTYPE,"PRECIS",NUMPAT,CYCLELEN,ENDTIME-STARTTIME, accrate))
+        log.close()

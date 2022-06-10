@@ -85,4 +85,4 @@ def dict_dist(meta_d1, meta_d2, circ_dist, multivariate=False): # circ_dist is o
         mofmedians = np.asarray(mofmedians)
         return np.median(mofmedians)**2 # median, dictionary level
     else:
-        return np.median(dictcomp(meta_d1,meta_d2, circ_dist))**2
+        return np.median(invoke_dictcomp(meta_d1,meta_d2, circ_dist))**2

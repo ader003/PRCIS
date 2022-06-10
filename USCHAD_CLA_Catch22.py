@@ -19,7 +19,7 @@ if __name__ == "__main__":
     SENSOR = 1
     activitymap = {1: "Walking Forward", 2: "Walking Left", 3: "Walking Right", 4: "Walking Upstairs", 5: "Walking Downstairs", 6: "Running Forward", 7: "Jumping Up", 8: "Sitting", 9: "Standing", 10: "Sleeping", 11: "Elevator Up", 12: "Elevator Down"}
     omitactivities=["a8t","a9t","a10"]
-    main_dir = '/home/ader003/DATASETS/USC-HAD/'
+    main_dir = 'USC-HAD/'
     i = 0
     dataset = []
     labels = []
